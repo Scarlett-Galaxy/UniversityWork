@@ -1,0 +1,4 @@
+#!/bin/sh
+
+alias antivirus="sudo freshclam && clamscan -r --bell -i /"
+alias rkit="sudo rkhunter --check"

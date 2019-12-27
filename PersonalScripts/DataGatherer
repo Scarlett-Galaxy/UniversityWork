@@ -1,0 +1,88 @@
+#!/bin/sh
+
+<<Comments
+What this script should do
+1. Check operating system
+2. Set a variable based on what system it is - Nulled as there are universal commands
+3. Do checks based on the system
+
+
+Ways to get the operating system
+uname -a
+cat /etc/os-release
+cat /etc/release # SVR4, Solaris
+cat /etc/redhat-release
+cat /etc/*elease
+cat /etc/lsb-release
+oslevel -r # AIX
+system_profiler -detailLevel -2 # Mac OS/X
+
+
+Ways to get a package
+different ones for the system but 
+ls /bin | grep "<packagename>"" works well for most
+
+Comments
+
+cmdsearch=(firefox lsscsi hdparm dmidecode)
+
+operatingsystem(){
+	echo -e "----OS Data----"
+	uname -a
+	cat /etc/*elease
+}
+
+filesearch(){
+	searchterm=$1
+	search=$(ls /bin | grep $searchterm)
+	echo $search
+}
+
+enter(){
+	echo -e "Press ctrl + C to exit, or"
+	read -p "Press enter to continue..."
+	clear
+	#read -n 1 -s -r -p "Press any key to continue"
+}
+listinfo(){
+	clear
+	operatingsystem
+	enter
+	echo -e "----CPU Data----"
+	lscpu
+	enter
+	echo "----USB Data----"
+	lsusb
+	enter
+	echo "----Device Data----"
+	lsblk
+	enter
+	echo "----PCI Data----"
+	lspci
+	enter
+}
+
+sudochecker(){
+	ls
+	#sudo -l -if sudo capable, shows all commands you can run
+	#groups <username>
+	#users
+	#getent group <groupname>
+	#getent group -Shows you all groups
+}
+
+cmdchecker(){
+	for i in $cmdsearch; 
+	do
+		filesearch $i
+	done
+}
+infodisplay(){
+	listinfo
+	cmdchecker
+	
+}
+
+
+#operatingsystem
+infodisplay

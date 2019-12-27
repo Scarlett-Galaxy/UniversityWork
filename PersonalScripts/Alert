@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#What I'm aiming to do:
+#Add a shutdown, reeboot dmenu
+
+[$(echo -e "No\nYes" | dmenu -i -p "$1")] == "Yes" ] && $2

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+
+#Things that need to happen on startup: using systemctl and systemd
+#Change Keyboard to UK
+#Output data to a screen -> Neofetch, lsblk, other interesting data
+#Turn on Network Manager
+#Run nm-applet
+#Antivirus and rootkit
+#Ask if the user wants to go into audit mode and then open a window with info on it
+#If it's been long enough, do a pacman update
+
+#/etc/netctl/wlp3s0-eduroam.save
+#/etc/netctl/wlp3s0-eduroam
+#/etc/NetworkManager/system-connections/eduroam.nmconnection
+#/home/scarlett/.eduroam
+#/home/scarlett/.eduroam/edu.config
+
+setxkbmap gb
